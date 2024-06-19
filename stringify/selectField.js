@@ -14,6 +14,7 @@ var isString = require('../util/isString')
 var maxExpression = require('./maxExpression')
 var minExpression = require('./minExpression')
 var nvlExpression = require('./nvlExpression')
+var udfExpression = require('./udfExpression')
 var stringField = require('./stringField')
 var sumExpression = require('./sumExpression')
 
@@ -31,7 +32,7 @@ var upperExpression = unaryFunction('UPPER')
  * @returns {String} result
  */
 
-function selectField (field, select) {
+function selectField(field, select) {
   // Field could be a subquery.
 
   if (isSelect(field)) {
@@ -88,6 +89,13 @@ function selectField (field, select) {
     if (field.UPPER) {
       return upperExpression(field)
     }
+
+    Object.keys(field).forEach(key => {
+      if (!['AVG', 'COUNT', 'LOWER', 'MAX', 'MIN', 'NVL', 'SUM', 'UPPER', 'AS'].includes(key)) {
+        // 自定义UDF函数处理
+        return udfExpression(field, key)
+      }
+    })
 
     // Check if it is an alias. This must be the last check since
     // other expressions can contain aliases.
