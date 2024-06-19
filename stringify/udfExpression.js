@@ -13,7 +13,11 @@ function maxExpression(json, key) {
   var result = ''
   var UDF = json[key]
 
-  if (isString(UDF)) result = `${key}(${UDF})`
+  if (isString(UDF)) {
+    result = `${key}(${UDF})`
+  } else {
+    result = `${key}(${UDF.join(', ')})`
+  }
 
   return result + aliasExpression(json)
 }

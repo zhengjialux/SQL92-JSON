@@ -21,7 +21,7 @@ var selectField = require('./selectField')
  * @returns {String} sql
  */
 
-function select (json) {
+function select(json) {
   var sql = 'SELECT '
 
   if (json.DISTINCT) sql += 'DISTINCT '

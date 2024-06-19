@@ -90,12 +90,16 @@ function selectField(field, select) {
       return upperExpression(field)
     }
 
+    let UDFName = ''
     Object.keys(field).forEach(key => {
       if (!['AVG', 'COUNT', 'LOWER', 'MAX', 'MIN', 'NVL', 'SUM', 'UPPER', 'AS'].includes(key)) {
         // 自定义UDF函数处理
-        return udfExpression(field, key)
+        UDFName = key
       }
     })
+    if (UDFName) {
+      return udfExpression(field, UDFName)
+    }
 
     // Check if it is an alias. This must be the last check since
     // other expressions can contain aliases.
