@@ -2,7 +2,7 @@
 
 > can stringify a JSON into a SQL and viceversa parse a SQL statement and serialize it into a JSON.
 
-> 基于 SQL92-JSON 对 stringify 模块解析添加了，除原作者开发的常规内置函数外的自定义函数支持。例子：https://github.com/pinyixia/graphical-sql-parser
+> 基于 SQL92-JSON 对 stringify 模块解析添加了，除原作者开发的常规内置函数外的自定义函数支持。例子：[graphical-sql-parser](https://github.com/zhengjialux/graphical-sql-parser)
 
 [Installation](#installation) |
 [API](#api) |
